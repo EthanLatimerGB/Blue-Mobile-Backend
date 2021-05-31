@@ -1,3 +1,14 @@
+import { Document } from 'mongoose';
+
+/*
+---
+Interfaces for all MongoDB Database Model Documents
+--- 
+*/
+
+
+//ItemListing Interface Types for Mongoose
+
 export type ImageType = {
 	altText: string;
 	url: string;
@@ -12,24 +23,24 @@ export type CommentType = {
 
 export type StorageOptionsType = {
 	price: number;
-	storage?: number;
-	memory?: number;
+	storageMB?: number;
+	memoryMB?: number;
 };
 
 export type SpecificaitonType = {
-	type: string;
+	prodType: string;
 	OS: string;
 	processor: string;
-	screenSizeInch: number;
-	screenRes: string;
-	screenType: string;
+	screenSizeInch?: number;
+	screenRes?: string;
+	screenType?: string;
 	touchscreen: boolean;
 	features: Array<string>;
 	wifi: boolean;
 	cellular: boolean;
 	bluetooth: boolean;
 	NFC: boolean;
-	speakers: string;
+	speakers?: string;
 	boxContents: Array<string>;
 	dimensions: string;
 	weightGrams: number;
@@ -47,3 +58,7 @@ export interface ItemListingType {
 	storageOptions: StorageOptionsType;
 	description: string;
 }
+
+export interface IItemListing extends Document, ItemListingType {};
+
+

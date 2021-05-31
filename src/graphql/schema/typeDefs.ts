@@ -1,5 +1,4 @@
-import { gql, ApolloServerExpressConfig } from "apollo-server-express";
-import rootResolver from "../resolvers/resolver";
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
 	type Image {
@@ -18,9 +17,9 @@ const typeDefs = gql`
 		type: String!
 		OS: String!
 		processor: String!
-		screenSizeInch: Float!
-		screenRes: String!
-		screenType: String!
+		screenSizeInch: Float
+		screenRes: String
+		screenType: String
 		touchscreen: Boolean!
 		features: [String!]!
 		wifi: Boolean!
@@ -36,8 +35,8 @@ const typeDefs = gql`
 
 	type StorageOptions {
 		price: Float!
-		storage: Int
-		memory: Int
+		storageMB: Int
+		memoryMB: Int
 	}
 
 	type ItemListing {
@@ -53,7 +52,10 @@ const typeDefs = gql`
 	}
 
 	type Query {
-		ping: String!
+		ping: String!,
+		listAllProducts: [ItemListing],
+		listNumberOfProducts: Int!,
+		create: ItemListing
 	}
 `;
 

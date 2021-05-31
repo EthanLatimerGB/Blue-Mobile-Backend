@@ -1,4 +1,151 @@
-import { prop, getModelForClass } from "@typegoose/typegoose";
+//import { prop, getModelForClass } from "@typegoose/typegoose";
+import mongoose, { Schema } from "mongoose";
+import { IItemListing } from '../TS/interfaces/dbInterfaces';
+
+const ItemSchema: Schema = new Schema({
+	name: {
+		type: String,
+		required: true,
+		minLength: 3,
+	},
+	brand: {
+		type: String,
+		required: true,
+		minLength: 3,
+	},
+	imageLinks: {
+		altText: {
+			type: String,
+			required: true,
+		},
+		url: {
+			type: String,
+			required: true,
+		},
+	},
+	comments: [
+		{
+			personName:  {
+				type: String,
+				required: true
+			},
+			personEmail:  {
+				type: String,
+				required: true
+			},
+			rating:  {
+				type: Number,
+				required: true
+			},
+			content:  {
+				type: String,
+				required: true
+			},
+		},
+	],
+	stockLevel:  {
+		type: Number,
+		required: true
+	},
+	categories: [
+		{
+			type: String,
+			required: true,
+		},
+	],
+	specification: {
+		prodType:  {
+			type: String,
+			required: true
+		},
+		OS:  {
+			type: String,
+			required: true
+		},
+		processor:  {
+			type: String,
+			required: true
+		},
+		screenSizeInch:  {
+			type: Number,
+			required: false
+		},
+		screenRes:  {
+			type: String,
+			required: false
+		},
+		screenType:  {
+			type: String,
+			required: false
+		},
+		touchscreen:  {
+			type: Boolean,
+			required: true
+		},
+		features: [
+			{
+				type: String,
+				required: true,
+			},
+		],
+		wifi:  {
+			type: Boolean,
+			required: true
+		},
+		cellular:  {
+			type: Boolean,
+			required: true
+		},
+		NFC:  {
+			type: Boolean,
+			required: true
+		},
+		speakers:  {
+			type: String,
+			required: false
+		},
+		boxContents: [
+			{
+				type: String,
+				required: true,
+			},
+		],
+		dimensions:  {
+			type: String,
+			required: true
+		},
+		weightGrams:  {
+			type: Number,
+			required: true
+		},
+		warrantyLengthMonths:  {
+			type: Number,
+			required: true
+		},
+	},
+	storageOptions: {
+		price:  {
+			type: String,
+			required: true
+		},
+		storageMB: {
+			type: Number,
+			required: false,
+		},
+		memoryMB: {
+			type: Number,
+			required: false,
+		},
+	},
+	description:  {
+		type: String,
+		required: true
+	},
+});
+
+/* 
+
+--TypeGoose Implementation
 
 class ImageLinksClass {
 	@prop()
@@ -6,7 +153,7 @@ class ImageLinksClass {
 
 	@prop()
 	public url!: string;
-}
+};
 
 class CommentsClass {
 	@prop()
@@ -34,7 +181,7 @@ class SpecificationClass {
 
 	@prop()
 	public screenSizeInch!: string;
-	
+
 	@prop()
 	public screenRes!: string;
 
@@ -55,9 +202,9 @@ class SpecificationClass {
 
 	@prop()
 	public bluetooth!: boolean;
-	
+
 	@prop()
-	public NFC!: boolean
+	public NFC!: boolean;
 
 	@prop({ type: () => [String] })
 	public boxContents!: string[];
@@ -84,10 +231,10 @@ class StorageOptionsClass {
 }
 
 class ItemClass {
-	@prop({ required: true })
+	@prop()
 	public name!: string;
 
-	@prop({ required: true })
+	@prop()
 	public brand!: string;
 
 	@prop()
@@ -96,19 +243,23 @@ class ItemClass {
 	@prop()
 	public comments?: CommentsClass;
 
-	@prop({ required: true })
+	@prop()
 	public stockLevel!: number;
 
-	@prop({ required: true })
+	@prop()
 	public specification!: SpecificationClass;
 
-	@prop({ type: () => [StorageOptionsClass], required: true })
+	@prop({ type: () => [StorageOptionsClass] })
 	public storageOptions!: StorageOptionsClass[];
 
-	@prop({ required: true })
+	@prop()
 	public description!: string;
 }
 
 const ItemListing = getModelForClass(ItemClass);
+
+*/
+
+const ItemListing = mongoose.model<IItemListing>('ItemListing', ItemSchema);
 
 export default ItemListing;
