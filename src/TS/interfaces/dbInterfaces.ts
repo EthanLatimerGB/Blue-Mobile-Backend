@@ -59,6 +59,6 @@ export interface ItemListingType {
 	description: string;
 }
 
-export interface IItemListing extends Document, ItemListingType {};
+export interface IItemListing extends Document, ItemListingType {}
 
 

@@ -1,9 +1,5 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import { createServer } from "http";
-import compression from "compression";
-import cors from "cors";
-import helmet from "helmet";
 import mongoose from "mongoose";
 
 import typeDefs from "./graphql/schema/typeDefs";

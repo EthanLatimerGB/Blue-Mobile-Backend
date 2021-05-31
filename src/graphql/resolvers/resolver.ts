@@ -1,25 +1,24 @@
 import ItemListing from "../../mongooseSchema/ItemListing";
+import { IItemListing } from "../../TS/interfaces/dbInterfaces";
 
 const rootResolver = {
 	Query: {
-		ping: () => {
+		ping: (): string => {
 			return "pong";
 		},
-		listAllProducts: async () => {
-			const products = ItemListing.find({  });
+		listAllProducts: async (): Promise<IItemListing[]> => {
+			const products = await ItemListing.find({});
 			return products;
 		},
-		listNumberOfProducts: async () => {
+		listNumberOfProducts: async (): Promise<number> => {
 			let productCount = 0;
-			const products = ItemListing.find({});
+			const products = await ItemListing.find({});
 			products.map(() => {
-				productCount+= 1;
-			})
+				productCount += 1;
+			});
+
 			return productCount;
 		},
-		create: async () => {
-
-		}
 	},
 };
 
